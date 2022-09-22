@@ -19,7 +19,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="pages/gallery.html" class="nav-link">
+                <a href="{{route('teams.index')}}" class="nav-link {{request()->routeIs(['teams.*'])?'active':''}}">
                     <i class="nav-icon fas fa-solid fa-users"></i>
                     <p>
                         Teams

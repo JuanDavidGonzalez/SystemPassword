@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,25 @@ Route::get('/dashboard', function () {
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+
+
+Route::get('/teams', [TeamController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('teams.index');
+
+Route::get('/teams/create', [TeamController::class, 'create'])
+    ->middleware(['auth'])
+    ->name('teams.create');
+
+Route::post('/teams/create', [TeamController::class, 'store'])
+    ->middleware(['auth'])
+    ->name('teams.create');
+
+Route::get('/teams/{team}/edit', [TeamController::class, 'edit'])
+    ->middleware(['auth'])
+    ->name('teams.edit');
+
+Route::put('/teams/{team}/update', [TeamController::class, 'update'])
+    ->middleware(['auth'])
+    ->name('teams.update');

@@ -43,6 +43,7 @@
                         </a>
                     </form>
                 </li>
+            </ul>
         </nav>
         <!-- /.navbar -->
 
@@ -61,7 +62,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
+
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
@@ -73,19 +74,35 @@
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item active">Dashboard v1</li>
                             </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                        @if(session('fail'))
+                            <div class="alert alert-danger alert-dismissible">
+                                <div class="alert-close">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                </div>
+                                {{ session('fail') }}
+                            </div>
+                        @elseif(session('success'))
+                            <div class="alert alert-success alert-dismissible">
+                                <div class="alert-close">
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                </div>
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!-- /.content-header -->
-
-            <!-- Main content -->
             <section class="content">
-
+                @yield('content')
             </section>
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
+
         <footer class="main-footer">
             <strong>Copyright &copy; 2022 {{ config('app.name', 'Laravel') }}</strong>
             All rights reserved.
@@ -113,6 +130,6 @@
     <!-- Bootstrap 4 -->
     <script src="{{asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE App -->
-    <script src="{{asset('assets/dist/js/adminlte.js')}}"></script>
+    <script src="{{asset('assets/dist/js/adminlte.js')}}"></script
     </body>
 </html>
