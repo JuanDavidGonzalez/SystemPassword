@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Password extends Model
 {
     use HasFactory;
+
+    Protected $fillable = ['title', 'password', 'url', 'username', 'note'];
 }

@@ -11,7 +11,7 @@
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('passwords.index')}}" class="nav-link {{request()->routeIs(['passwords.*'])?'active':''}}">
                     <i class="nav-icon fas fa-solid fa-key"></i>
                     <p>
                         Passwords
