@@ -28,7 +28,7 @@
             </li>
             <li class="nav-header">Settings</li>
             <li class="nav-item">
-                <a href="pages/calendar.html" class="nav-link">
+                <a href="{{route('users.index')}}" class="nav-link {{request()->routeIs(['users.*'])?'active':''}}">
                     <i class="nav-icon fas fa-solid fa-users-cog"></i>
                     <p>
                         Users

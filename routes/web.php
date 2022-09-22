@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\PasswordController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -74,3 +75,27 @@ Route::put('/passwords/{password}/update', [PasswordController::class, 'update']
 Route::get('/passwords/{password}/show', [PasswordController::class, 'show'])
     ->middleware(['auth'])
     ->name('passwords.show');
+
+
+/**
+ * User Routes
+ */
+Route::get('/users/index', [UserController::class, 'index'])
+    ->middleware(['auth'])
+    ->name('users.index');
+
+Route::get('/users/create', [UserController::class, 'create'])
+    ->middleware(['auth'])
+    ->name('users.create');
+
+Route::post('/users/create', [UserController::class, 'store'])
+    ->middleware(['auth'])
+    ->name('users.create');
+
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])
+    ->middleware(['auth'])
+    ->name('users.edit');
+
+Route::put('/users/{user}/update', [UserController::class, 'update'])
+    ->middleware(['auth'])
+    ->name('users.update');
