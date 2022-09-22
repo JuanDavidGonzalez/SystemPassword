@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', 'login');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -26,76 +24,40 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-/**
- * Team Routes
- */
-Route::get('/teams', [TeamController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('teams.index');
+Route::middleware(['auth'])->group(function (){
 
-Route::get('/teams/create', [TeamController::class, 'create'])
-    ->middleware(['auth'])
-    ->name('teams.create');
+    /**
+     * Team Routes
+     */
+    Route::controller(TeamController::class)->group(function(){
+        Route::get('/teams', 'index')->name('teams.index');
+        Route::get('/teams/create', 'create')->name('teams.create');
+        Route::post('/teams/create', 'store')->name('teams.create');
+        Route::get('/teams/{team}/edit', 'edit')->name('teams.edit');
+        Route::put('/teams/{team}/update', 'update')->name('teams.update');
+    });
 
-Route::post('/teams/create', [TeamController::class, 'store'])
-    ->middleware(['auth'])
-    ->name('teams.create');
+    /**
+     * Password Routes
+     */
+    Route::controller(PasswordController::class)->group(function (){
+        Route::get('/passwords/index','index')->name('passwords.index');
+        Route::get('/passwords/create','create')->name('passwords.create');
+        Route::post('/passwords/create','store')->name('passwords.create');
+        Route::get('/passwords/{password}/edit','edit')->name('passwords.edit');
+        Route::put('/passwords/{password}/update','update')->name('passwords.update');
+        Route::get('/passwords/{password}/show','show')->name('passwords.show');
+    });
 
-Route::get('/teams/{team}/edit', [TeamController::class, 'edit'])
-    ->middleware(['auth'])
-    ->name('teams.edit');
+    /**
+     * User Routes
+     */
+    Route::controller(UserController::class)->group(function(){
+        Route::get('/users/index', 'index')->name('users.index');
+        Route::get('/users/create', 'create')->name('users.create');
+        Route::post('/users/create', 'store')->name('users.create');
+        Route::get('/users/{user}/edit', 'edit')->name('users.edit');
+        Route::put('/users/{user}/update', 'update')->name('users.update');
+    });
 
-Route::put('/teams/{team}/update', [TeamController::class, 'update'])
-    ->middleware(['auth'])
-    ->name('teams.update');
-
-/**
- * Password Routes
- */
-Route::get('/passwords/index', [PasswordController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('passwords.index');
-
-Route::get('/passwords/create', [PasswordController::class, 'create'])
-    ->middleware(['auth'])
-    ->name('passwords.create');
-
-Route::post('/passwords/create', [PasswordController::class, 'store'])
-    ->middleware(['auth'])
-    ->name('passwords.create');
-
-Route::get('/passwords/{password}/edit', [PasswordController::class, 'edit'])
-    ->middleware(['auth'])
-    ->name('passwords.edit');
-
-Route::put('/passwords/{password}/update', [PasswordController::class, 'update'])
-    ->middleware(['auth'])
-    ->name('passwords.update');
-
-Route::get('/passwords/{password}/show', [PasswordController::class, 'show'])
-    ->middleware(['auth'])
-    ->name('passwords.show');
-
-
-/**
- * User Routes
- */
-Route::get('/users/index', [UserController::class, 'index'])
-    ->middleware(['auth'])
-    ->name('users.index');
-
-Route::get('/users/create', [UserController::class, 'create'])
-    ->middleware(['auth'])
-    ->name('users.create');
-
-Route::post('/users/create', [UserController::class, 'store'])
-    ->middleware(['auth'])
-    ->name('users.create');
-
-Route::get('/users/{user}/edit', [UserController::class, 'edit'])
-    ->middleware(['auth'])
-    ->name('users.edit');
-
-Route::put('/users/{user}/update', [UserController::class, 'update'])
-    ->middleware(['auth'])
-    ->name('users.update');
+});
