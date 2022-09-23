@@ -13,10 +13,10 @@
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="name">Team Name</label>
-                                <input type="text" name="name" value="{{$team->name}}"
+                                <label for="name">Team Name:</label>
+                                <input type="text" name="name" value="{{old('name', $team->name)}}"
                                        class="form-control @error('name') is-invalid @enderror"
-                                       id="name" placeholder="Enter name">
+                                       id="name">
                                 @error ('name')
                                     <span class="error invalid-feedback">{{ $message }}</span>
                                 @enderror

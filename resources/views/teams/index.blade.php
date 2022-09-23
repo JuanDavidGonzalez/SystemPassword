@@ -31,7 +31,6 @@
                                         <td>{{$team->created_at}}</td>
                                         <td>
                                             <a href="{{route('teams.edit', $team->id)}}" class="btn btn-warning btn-xs" title="Edit"><i class="fas fa-edit"></i></a>
-                                            <a class="btn btn-danger btn-xs" title="Delete"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

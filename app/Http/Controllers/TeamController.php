@@ -21,7 +21,7 @@ class TeamController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|unique:teams|max:100'
         ]);
 
@@ -36,10 +36,11 @@ class TeamController extends Controller
     {
         return view('teams.edit', compact('team'));
     }
+
     public function update(Team $team, Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|unique:teams|max:100'
+        $request->validate([
+            'name' => "required|unique:teams,name,$team->id|max:100"
         ]);
 
         $team->fill($request->all());
