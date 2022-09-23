@@ -23,10 +23,10 @@ class PasswordController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|unique:passwords',
+            'title' => 'required|unique:passwords|string|max:100',
             'password' => 'required',
             'url' => 'nullable|url',
-            'note' => 'nullable|max:100',
+            'note' => 'nullable|max:255',
         ]);
 
         $password = new Password();
@@ -45,10 +45,10 @@ class PasswordController extends Controller
     public function update(Password $password, Request $request)
     {
         $request->validate([
-            'title' => 'required',
+            'title' => "required|unique:passwords,title,$password->id|string|max:100",
             'password' => 'required',
             'url' => 'nullable|url',
-            'note' => 'nullable|max:100',
+            'note' => 'nullable|max:255',
         ]);
 
         $password->fill($request->all());

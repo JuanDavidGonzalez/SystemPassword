@@ -16,7 +16,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="title">Title:*</label>
-                                        <input type="text" value="{{$password->title}}" name="title" class="form-control @error('title') is-invalid @enderror" id="title">
+                                        <input type="text" value="{{old('title', $password->title)}}" name="title"
+                                               class="form-control @error('title') is-invalid @enderror" id="title">
                                         @error ('title')
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
@@ -25,7 +26,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="password">Password:*</label>
-                                        <input type="text" value="{{$password->password}}" name="password" class="form-control @error('password') is-invalid @enderror" id="password">
+                                        <input type="text" value="{{old('password', $password->password)}}" name="password"
+                                               class="form-control @error('password') is-invalid @enderror" id="password">
                                         @error ('password')
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
@@ -36,7 +38,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="url">Url:</label>
-                                        <input type="url" value="{{$password->url}}" name="url" class="form-control @error('url') is-invalid @enderror" id="url">
+                                        <input type="url" value="{{old('url',$password->url)}}" name="url"
+                                               class="form-control @error('url') is-invalid @enderror" id="url">
                                         @error ('url')
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
@@ -45,7 +48,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="username">Username:</label>
-                                        <input type="text" value="{{$password->username}}" name="username" class="form-control @error('username') is-invalid @enderror" id="username">
+                                        <input type="text" value="{{old('username', $password->username)}}" name="username"
+                                               class="form-control @error('username') is-invalid @enderror" id="username">
                                         @error ('username')
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
@@ -57,7 +61,7 @@
                                     <div class="form-group">
                                         <label for="note">Note:</label>
                                         <textarea type="text" name="note" class="form-control @error('note') is-invalid @enderror"
-                                                  id="note" rows="3"> {{$password->note}}
+                                                  id="note" rows="3"> {{old('note',$password->note)}}
                                         </textarea>
                                         @error ('note')
                                             <span class="error invalid-feedback">{{ $message }}</span>

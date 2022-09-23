@@ -32,7 +32,6 @@
                                         <td>
                                             <a href="{{route('passwords.show', $password->id)}}" class="btn btn-primary btn-xs" title="show"><i class="fas fa-eye"></i></a>
                                             <a href="{{route('passwords.edit', $password->id)}}" class="btn btn-warning btn-xs" title="Edit"><i class="fas fa-edit"></i></a>
-                                            <a class="btn btn-danger btn-xs" title="Delete"><i class="fas fa-trash"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
