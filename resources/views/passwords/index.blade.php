@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('breadcrumb')
+    <li class="breadcrumb-item active">Passwords</li>
+@endsection
+
 @section('content')
     <div class="container-fluid">
         <div class="row">

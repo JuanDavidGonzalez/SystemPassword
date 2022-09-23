@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('breadcrumb')
+    <li class="breadcrumb-item"><a href="{{route('passwords.index')}}">Passwords</a></li>
+    <li class="breadcrumb-item active">Create</li>
+@endsection
+
 @section('content')
     <div class="container-fluid">
         <div class="row">
