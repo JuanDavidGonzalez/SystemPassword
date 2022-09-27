@@ -21,7 +21,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Name:*</label>
-                                        <input type="text" value="{{$user->name}}" name="name" class="form-control @error('name') is-invalid @enderror" id="name">
+                                        <input type="text" value="{{old('name', $user->name)}}" name="name" class="form-control @error('name') is-invalid @enderror" id="name">
                                         @error ('name')
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
@@ -30,7 +30,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="email">Email:*</label>
-                                        <input type="email" value="{{$user->email}}" name="email" class="form-control @error('email') is-invalid @enderror" id="email">
+                                        <input type="email" value="{{old('email', $user->email)}}" name="email" class="form-control @error('email') is-invalid @enderror" id="email">
                                         @error ('email')
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror

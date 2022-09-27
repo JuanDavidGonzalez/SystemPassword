@@ -20,7 +20,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="name">Name:*</label>
-                                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name">
+                                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name"
+                                               value="{{old('name')}}">
                                         @error ('name')
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
@@ -29,7 +30,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="email">Email:*</label>
-                                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email">
+                                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                                               value="{{old('email')}}">
                                         @error ('email')
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
@@ -40,7 +42,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="password">Password:*</label>
-                                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password">
+                                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password"
+                                               value="{{old('password')}}">
                                         @error ('password')
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
@@ -49,7 +52,8 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="password">Confirm Password:*</label>
-                                        <input type="password" name="password_confirmation" class="form-control @error('password') is-invalid @enderror" id="password">
+                                        <input type="password" name="password_confirmation" class="form-control @error('password') is-invalid @enderror" id="password"
+                                               value="{{old('password_confirmation')}}">
                                         @error ('password')
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
