@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -19,7 +20,8 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.create');
+        $roles = Role::all();
+        return view('users.create', compact('roles'));
     }
 
     public function store(Request $request)
@@ -28,11 +30,13 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Password::defaults()],
+            'role' => ['required', 'not_in:-1'],
         ]);
 
         $user = new User();
         $user->fill($request->all());
         $user->password = Hash::make($request->password);
+        $user->assignRole($request->role);
         $user->save();
 
         return redirect(route('users.index'))->with('success', 'User Created Successfully');
@@ -41,7 +45,8 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $roles = Role::all();
+        return view('users.edit', compact('user', 'roles'));
     }
 
     public function update(User $user, Request $request)
@@ -50,9 +55,11 @@ class UserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', "unique:users,email,$user->id"],
             'password' => ['nullable'],
+            'role' => ['required', 'not_in:-1'],
         ]);
 
         $user->fill($request->all());
+        $user->syncRoles($request->role);
 
         if($request->input('password'))
             $user->password = Hash::make($request->input('password'));

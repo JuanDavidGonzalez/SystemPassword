@@ -60,8 +60,24 @@
                                     </div>
                                 </div>
                             </div>
-
-
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="role">Role:*</label>
+                                        <select class="form-control @error('role') is-invalid @enderror" name="role" id="role">
+                                            <option value="-1" selected disabled>-- Select --</option>
+                                            @foreach($roles as $role)
+                                                <option value="{{$role->name}}" {{ (old('role') == $role->name)?'selected':''}}>
+                                                    {{$role->name}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error ('role')
+                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>

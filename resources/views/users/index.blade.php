@@ -24,6 +24,7 @@
                                     <th>Id</th>
                                     <th>Name</th>
                                     <th>Email</th>
+                                    <th>Role</th>
                                     <th>Created At</th>
                                     <th></th>
                                 </tr>
@@ -34,9 +35,12 @@
                                         <td>{{$user->id}}</td>
                                         <td>{{$user->name}}</td>
                                         <td>{{$user->email}}</td>
+                                        <td>{{$user->roles->first()?->name}}</td>
                                         <td>{{$user->created_at}}</td>
                                         <td>
-                                            <a href="{{route('users.edit', $user->id)}}" class="btn btn-warning btn-xs" title="Edit"><i class="fas fa-edit"></i></a>
+                                            <a href="{{route('users.edit', $user->id)}}" class="btn btn-warning btn-xs" title="Edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

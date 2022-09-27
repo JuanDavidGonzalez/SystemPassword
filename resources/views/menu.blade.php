@@ -18,31 +18,33 @@
                     </p>
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="{{route('teams.index')}}" class="nav-link {{request()->routeIs(['teams.*'])?'active':''}}">
-                    <i class="nav-icon fas fa-solid fa-users"></i>
-                    <p>
-                        Teams
-                    </p>
-                </a>
-            </li>
-            <li class="nav-header">Settings</li>
-            <li class="nav-item">
-                <a href="{{route('users.index')}}" class="nav-link {{request()->routeIs(['users.*'])?'active':''}}">
-                    <i class="nav-icon fas fa-solid fa-users-cog"></i>
-                    <p>
-                        Users
-                    </p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="pages/gallery.html" class="nav-link">
-                    <i class="nav-icon fas fa-solid fa-lock"></i>
-                    <p>
-                        Roles & Permission
-                    </p>
-                </a>
-            </li>
+            @role('Administrator')
+                <li class="nav-item">
+                    <a href="{{route('teams.index')}}" class="nav-link {{request()->routeIs(['teams.*'])?'active':''}}">
+                        <i class="nav-icon fas fa-solid fa-users"></i>
+                        <p>
+                            Teams
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-header">Settings</li>
+                <li class="nav-item">
+                    <a href="{{route('users.index')}}" class="nav-link {{request()->routeIs(['users.*'])?'active':''}}">
+                        <i class="nav-icon fas fa-solid fa-users-cog"></i>
+                        <p>
+                            Users
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="pages/gallery.html" class="nav-link">
+                        <i class="nav-icon fas fa-solid fa-lock"></i>
+                        <p>
+                            Roles & Permission
+                        </p>
+                    </a>
+                </li>
+            @endrole
         </ul>
     </nav>
 </div>

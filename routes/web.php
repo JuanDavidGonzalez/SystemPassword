@@ -26,7 +26,7 @@ Route::middleware(['auth'])->group(function (){
     /**
      * Team Routes
      */
-    Route::controller(TeamController::class)->group(function(){
+    Route::middleware(['role:Administrator'])->controller(TeamController::class)->group(function(){
         Route::get('/teams', 'index')->name('teams.index');
         Route::get('/teams/create', 'create')->name('teams.create');
         Route::post('/teams/create', 'store')->name('teams.create');
@@ -49,12 +49,11 @@ Route::middleware(['auth'])->group(function (){
     /**
      * User Routes
      */
-    Route::controller(UserController::class)->group(function(){
+    Route::middleware(['role:Administrator'])->controller(UserController::class)->group(function(){
         Route::get('/users/index', 'index')->name('users.index');
         Route::get('/users/create', 'create')->name('users.create');
         Route::post('/users/create', 'store')->name('users.create');
         Route::get('/users/{user}/edit', 'edit')->name('users.edit');
         Route::put('/users/{user}/update', 'update')->name('users.update');
     });
-
 });
