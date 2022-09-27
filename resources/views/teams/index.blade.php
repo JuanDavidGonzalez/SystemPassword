@@ -23,6 +23,7 @@
                                 <tr class="text-center">
                                     <th>Id</th>
                                     <th>Name</th>
+                                    <th>Users</th>
                                     <th>Created At</th>
                                     <th></th>
                                 </tr>
@@ -32,6 +33,7 @@
                                     <tr>
                                         <td>{{$team->id}}</td>
                                         <td>{{$team->name}}</td>
+                                        <td class="text-center">{{$team->users->count()}}</td>
                                         <td>{{$team->created_at}}</td>
                                         <td>
                                             <a href="{{route('teams.edit', $team->id)}}" class="btn btn-warning btn-xs" title="Edit"><i class="fas fa-edit"></i></a>
