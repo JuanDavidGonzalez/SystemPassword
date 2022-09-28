@@ -24,6 +24,7 @@
                                     <th>Id</th>
                                     <th>Title</th>
                                     <th>Created At</th>
+                                    <th>Origin</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -33,9 +34,19 @@
                                         <td>{{$password->id}}</td>
                                         <td>{{$password->title}}</td>
                                         <td>{{$password->created_at}}</td>
+                                        <td class="text-center">
+                                            <span class="badge {{$password->shared=='Owner'?'badge-success':'badge-primary'}}">
+                                                {{$password->shared}}</span>
+                                        </td>
                                         <td>
-                                            <a href="{{route('passwords.show', $password->id)}}" class="btn btn-primary btn-xs" title="show"><i class="fas fa-eye"></i></a>
-                                            <a href="{{route('passwords.edit', $password->id)}}" class="btn btn-warning btn-xs" title="Edit"><i class="fas fa-edit"></i></a>
+                                            <a href="{{route('passwords.show', $password->id)}}" class="btn btn-primary btn-xs" title="show">
+                                                <i class="fas fa-eye"></i>
+                                            </a>
+                                            @if($password->shared == 'Owner')
+                                                <a href="{{route('passwords.edit', $password->id)}}" class="btn btn-warning btn-xs" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

@@ -74,6 +74,41 @@
                                     </div>
                                 </div>
                             </div>
+                            <h5>Share Password</h5><hr>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="users">Users:</label>
+                                        <select name="users[]" class="form-control @error('users') is-invalid @enderror"
+                                                id="note" multiple>
+                                            @foreach($users as $key => $value)
+                                                <option value="{{$key}}" {{in_array($key, $password->users->modelkeys())?'selected':''}}>
+                                                    {{$value}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error ('users')
+                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="teams">Team:</label>
+                                        <select name="teams" class="form-control @error('teams') is-invalid @enderror"
+                                                id="teams" multiple>
+                                            @foreach($teams as $key => $value)
+                                                <option value="{{$key}}" {{in_array($key, $password->teams->modelkeys())?'selected':''}}>
+                                                    {{$value}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error ('teams')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Submit</button>
